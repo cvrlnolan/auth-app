@@ -7,7 +7,7 @@ type Props = {
 const Container = ({ children }: Props) => {
   return (
     <>
-      <div className="container mx-auto p-6 w-full">
+      <div className="container mx-auto p-6 w-full min-h-screen bg-gray-50 relative">
         {children}
         <div className="flex justify-center space-x-12 my-4 text-gray-500">
           <p>Created by Carl Nolan</p>

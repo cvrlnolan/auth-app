@@ -1,12 +1,17 @@
 import React from "react";
 
-const DevLogo = () => {
+type Dimensions = {
+  width: number;
+  height: number;
+};
+
+const DevLogo = (logo: Dimensions) => {
   return (
     <>
       <div className="my-4 mx-auto">
         <svg
-          width="131"
-          height="22"
+          width={logo.width}
+          height={logo.height}
           viewBox="0 0 131 19"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
