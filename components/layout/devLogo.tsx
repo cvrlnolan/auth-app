@@ -8,7 +8,7 @@ type Dimensions = {
 const DevLogo = (logo: Dimensions) => {
   return (
     <>
-      <div className="my-4 mx-auto">
+      <div className="my-4 mx-auto cursor-pointer">
         <svg
           width={logo.width}
           height={logo.height}

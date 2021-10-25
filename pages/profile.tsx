@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Navbar from "@/components/layout/navbar";
 import ProfileView from "@/components/profile/profileView";
+import UpdateView from "@/components/profile/updateView";
 
 const Profile: NextPage = () => {
   return (
@@ -17,7 +18,8 @@ const Profile: NextPage = () => {
         <p className="text-center font-thin tracking-tight">
           Basic info, like your name and photo
         </p>
-        <ProfileView />
+        {/* <ProfileView /> */}
+        <UpdateView />
       </Navbar>
     </>
   );
