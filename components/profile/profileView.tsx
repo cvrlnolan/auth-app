@@ -2,7 +2,11 @@ import React from "react";
 import Image from "next/image";
 import profilePic from "public/photo.jpg";
 
-const ProfileView = () => {
+type Props = {
+  getEdit: Function;
+};
+
+const ProfileView = (props: Props) => {
   return (
     <>
       <div className="table border-2 border-gray-300 rounded-lg p-4 w:full md:w-4/5 mx-auto mt-10">
@@ -15,7 +19,10 @@ const ProfileView = () => {
                   Some info may be visible to other people
                 </p>
               </div>
-              <button className="py-1 px-4 w-24 h-10 rounded-xl border-2 border-gray-300 hover:bg-gray-100 transition duration-300">
+              <button
+                className="py-1 px-4 w-24 h-10 rounded-xl border-2 border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300"
+                onClick={() => props.getEdit(true)}
+              >
                 Edit
               </button>
             </div>

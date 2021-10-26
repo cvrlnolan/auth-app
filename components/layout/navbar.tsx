@@ -26,7 +26,7 @@ const Navbar = ({ children }: Props) => {
             <DevLogo width={131} height={22} />
           </div>
           <div
-            className="space-x-4 inline-flex cursor-pointer"
+            className="space-x-4 inline-flex cursor-pointer select-none"
             onClick={() => setVisible(!visible)}
           >
             <Image
