@@ -8,6 +8,7 @@ import {
   FaAt,
   FaKey,
 } from "react-icons/fa";
+import signup from "@/lib/auth/signup";
 
 type Props = {
   getAuth: Function;
@@ -27,7 +28,7 @@ const Signup = (props: Props) => {
         </p>
         <label
           htmlFor="email"
-          className="relative text-gray-400 focus-within:text-gray-600 block mb-5"
+          className="relative text-gray-400 focus-within:text-gray-600 block mb-5 transition duration-300"
         >
           <FaAt className="pointer-events-none w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3" />
           <input
@@ -38,7 +39,7 @@ const Signup = (props: Props) => {
         </label>
         <label
           htmlFor="password"
-          className="relative text-gray-400 focus-within:text-gray-600 block mb-5"
+          className="relative text-gray-400 focus-within:text-gray-600 block mb-5 transition duration-300"
         >
           <FaKey className="pointer-events-none w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3" />
           <input
@@ -54,16 +55,28 @@ const Signup = (props: Props) => {
           or continue with this social profile:
         </p>
         <div className="flex flex-wrap space-x-2 mx-auto">
-          <button className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300">
+          <button
+            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
+            onClick={() => signup("google")}
+          >
             <FaGoogle className="w-4 h-4 mx-auto text-gray-500" />
           </button>
-          <button className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300">
+          <button
+            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
+            onClick={() => signup("facebook")}
+          >
             <FaFacebookSquare className="w-4 h-4 mx-auto text-gray-500" />
           </button>
-          <button className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300">
+          <button
+            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
+            onClick={() => signup("twitter")}
+          >
             <FaTwitter className="w-4 h-4 mx-auto text-gray-500" />
           </button>
-          <button className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300">
+          <button
+            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
+            onClick={() => signup("github")}
+          >
             <FaGithub className="w-4 h-4 mx-auto text-gray-500" />
           </button>
         </div>
