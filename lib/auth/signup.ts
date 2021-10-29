@@ -8,6 +8,8 @@ import {
   GithubAuthProvider,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { mapUserData } from "@/lib/auth/mapUser";
+import { setUserCookie } from "@/lib/auth/userCookies";
 
 initFirebase();
 
@@ -41,6 +43,8 @@ export default async function index(
           uid: user.uid,
           token,
         });
+        const userData = mapUserData(user);
+        setUserCookie(userData);
       });
     }
     if (provider === "facebook") {
@@ -57,6 +61,8 @@ export default async function index(
           uid: user.uid,
           token,
         });
+        const userData = mapUserData(user);
+        setUserCookie(userData);
       });
     }
     if (provider === "twitter") {
@@ -73,6 +79,8 @@ export default async function index(
           uid: user.uid,
           token,
         });
+        const userData = mapUserData(user);
+        setUserCookie(userData);
       });
     }
     if (provider === "github") {
@@ -89,6 +97,8 @@ export default async function index(
           uid: user.uid,
           token,
         });
+        const userData = mapUserData(user);
+        setUserCookie(userData);
       });
     }
     if (provider === "emailPassword" && credentials) {
