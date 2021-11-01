@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DevLogo from "@/components/layout/devLogo";
 import {
   FaGoogle,
@@ -15,6 +15,15 @@ type Props = {
 };
 
 const Signup = (props: Props) => {
+  const [value, setValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const signupClick = () => {
+    console.log(value);
+  };
+
   return (
     <>
       <div className="flex flex-col mx-auto rounded-2xl border-2 p-6 w-full md:w-4/5 lg:w-2/5 space-y-4">
@@ -35,6 +44,11 @@ const Signup = (props: Props) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 focus:outline-none transition duration-300"
             placeholder="Email"
             id="email"
+            type="email"
+            onChange={(e) => {
+              setValue((prevState) => prevState);
+            }}
+            value={value.email}
           />
         </label>
         <label
@@ -46,9 +60,17 @@ const Signup = (props: Props) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 focus:outline-none transition duration-300"
             placeholder="Password"
             id="password"
+            type="password"
+            onChange={(e) => {
+              setValue((prevState) => prevState);
+            }}
+            value={value.password}
           />
         </label>
-        <button className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg transition duration-300 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+        <button
+          className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg transition duration-300 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+          onClick={signupClick}
+        >
           Start coding now
         </button>
         <p className="text-center font-thin tracking-tight">
