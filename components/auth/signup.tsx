@@ -46,7 +46,10 @@ const Signup = (props: Props) => {
             id="email"
             type="email"
             onChange={(e) => {
-              setValue((prevState) => prevState);
+              setValue((prevState) => ({
+                ...prevState,
+                email: e.target.value,
+              }));
             }}
             value={value.email}
           />
@@ -62,7 +65,10 @@ const Signup = (props: Props) => {
             id="password"
             type="password"
             onChange={(e) => {
-              setValue((prevState) => prevState);
+              setValue((prevState) => ({
+                ...prevState,
+                password: e.target.value,
+              }));
             }}
             value={value.password}
           />

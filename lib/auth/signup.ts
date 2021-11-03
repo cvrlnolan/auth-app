@@ -2,6 +2,7 @@ import { initFirebase, db } from "@/lib/firebaseInit";
 import {
   getAuth,
   signInWithPopup,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   FacebookAuthProvider,
   TwitterAuthProvider,
@@ -102,6 +103,22 @@ export default async function index(
       });
     }
     if (provider === "emailPassword" && credentials) {
+      await signInWithEmailAndPassword(
+        auth,
+        credentials.email,
+        credentials.password
+      ).then((result) => {
+        const user = result.user;
+        // No token generated for email & password signup. Inconsistency must be seen through
+        setDoc(doc(db, "users", user.uid), {
+          name: user.displayName,
+          email: user.email,
+          bio: "",
+          phone: user.phoneNumber,
+          photoURL: user.photoURL,
+          uid: user.uid,
+        });
+      });
     }
   } catch (e: any) {
     console.log(e.message);
