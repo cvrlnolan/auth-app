@@ -1,12 +1,39 @@
 import React from "react";
 import Image from "next/image";
+import axios from "axios";
+import useSWR from "swr";
 import profilePic from "public/photo.jpg";
+import { UserRecord } from "firebase-admin/lib/auth/user-record";
 
 type Props = {
   getEdit: Function;
+  user: any;
 };
 
 const ProfileView = (props: Props) => {
+  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+
+  const { data, error } = useSWR(
+    () => "/api/profile/" + props.user.id,
+    fetcher
+  );
+
+  if (error) {
+    return (
+      <>
+        <p className="text-center">{error.message}</p>
+      </>
+    );
+  }
+
+  if (!data) {
+    return (
+      <>
+        <p className="text-center">Loading...</p>
+      </>
+    );
+  }
+
   return (
     <>
       <div className="table border-2 border-gray-300 rounded-lg p-4 w:full md:w-4/5 mx-auto mt-10">
@@ -51,7 +78,7 @@ const ProfileView = (props: Props) => {
                 <p className="uppercase text-gray-400">Name</p>
               </div>
               <div className="table-cell">
-                <p>Carl Nolan</p>
+                <p>{props.user.name}</p>
               </div>
             </div>
           </div>
@@ -76,7 +103,7 @@ const ProfileView = (props: Props) => {
                 <p className="uppercase text-gray-400">Phone</p>
               </div>
               <div className="table-cell">
-                <p>+237696740298</p>
+                <p>{props.user.phoneNumber}</p>
               </div>
             </div>
           </div>
@@ -86,7 +113,7 @@ const ProfileView = (props: Props) => {
                 <p className="uppercase text-gray-400">Email</p>
               </div>
               <div className="table-cell">
-                <p className="truncate">georgecvrl0@gmail.com</p>
+                <p className="truncate">{props.user.email}</p>
               </div>
             </div>
           </div>

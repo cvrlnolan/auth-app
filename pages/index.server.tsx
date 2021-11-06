@@ -14,7 +14,7 @@ const DynamicLogin = dynamic(() => import("@/components/auth/login"), {
 
 const Home: NextPage = () => {
   const [auth, setAuth] = useState(false);
-  const { user, logout } = useUser();
+  const { user } = useUser();
 
   const getAuthSate = (status: boolean) => {
     setAuth(status);

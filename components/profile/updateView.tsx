@@ -5,7 +5,11 @@ import Compressor from "compressorjs";
 import profilePic from "public/photo.jpg";
 import { FaCamera } from "react-icons/fa";
 
-const UpdateView = () => {
+type Props = {
+  user: any;
+};
+
+const UpdateView = (props: Props) => {
   let [isOpen, setIsOpen] = useState(false);
 
   const [image, setImage] = useState<File | Blob>();

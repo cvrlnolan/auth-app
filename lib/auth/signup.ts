@@ -8,7 +8,7 @@ import {
   TwitterAuthProvider,
   GithubAuthProvider,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 import { mapUserData } from "@/lib/auth/mapUser";
 import { setUserCookie } from "@/lib/auth/userCookies";
 
@@ -42,7 +42,9 @@ export default async function index(
           phone: user.phoneNumber,
           photoURL: user.photoURL,
           uid: user.uid,
-          token,
+          // token,
+          provider: user.providerId,
+          createdDate: Timestamp.fromDate(new Date()),
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -60,7 +62,9 @@ export default async function index(
           phone: user.phoneNumber,
           photoURL: user.photoURL,
           uid: user.uid,
-          token,
+          // token,
+          provider: user.providerId,
+          createdDate: Timestamp.fromDate(new Date()),
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -78,7 +82,9 @@ export default async function index(
           phone: user.phoneNumber,
           photoURL: user.photoURL,
           uid: user.uid,
-          token,
+          // token,
+          provider: user.providerId,
+          createdDate: Timestamp.fromDate(new Date()),
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -96,7 +102,9 @@ export default async function index(
           phone: user.phoneNumber,
           photoURL: user.photoURL,
           uid: user.uid,
-          token,
+          // token,
+          provider: user.providerId,
+          createdDate: Timestamp.fromDate(new Date()),
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -108,8 +116,10 @@ export default async function index(
         credentials.email,
         credentials.password
       ).then((result) => {
-        const user = result.user;
         // No token generated for email & password signup. Inconsistency must be seen through
+        const user = result.user;
+        const userData = mapUserData(user);
+        setUserCookie(userData);
         setDoc(doc(db, "users", user.uid), {
           name: user.displayName,
           email: user.email,
@@ -117,6 +127,8 @@ export default async function index(
           phone: user.phoneNumber,
           photoURL: user.photoURL,
           uid: user.uid,
+          provider: user.providerId,
+          createdDate: Timestamp.fromDate(new Date()),
         });
       });
     }
