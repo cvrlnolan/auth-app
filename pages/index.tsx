@@ -1,10 +1,16 @@
 import React, { useState, useContext } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import Container from "@/components/layout/container";
-import Signup from "@/components/auth/signup";
-import Login from "@/components/auth/login";
 import { useUser } from "@/lib/auth/useUser";
+
+const DynamicSignup = dynamic(() => import("@/components/auth/signup"), {
+  loading: () => <p className="text-center">Loading...</p>,
+});
+const DynamicLogin = dynamic(() => import("@/components/auth/login"), {
+  loading: () => <p className="text-center">Loading...</p>,
+});
 
 const Home: NextPage = () => {
   const [auth, setAuth] = useState(false);
@@ -15,7 +21,17 @@ const Home: NextPage = () => {
   };
 
   if (!user) {
-    return <p className="text-center">Loading...</p>;
+    return (
+      <>
+        <Head>
+          <title>Authentication App</title>
+        </Head>
+        <Container>
+          {!auth && <DynamicSignup setAuth={getAuthSate} />}
+          {auth && <DynamicLogin setAuth={getAuthSate} />}
+        </Container>
+      </>
+    );
   }
 
   if (user) {
@@ -27,10 +43,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Authentication App</title>
       </Head>
-      <Container>
-        {!auth && <Signup getAuth={getAuthSate} />}
-        {auth && <Login getAuth={getAuthSate} />}
-      </Container>
     </>
   );
 };

@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import Container from "@/components/layout/container";
 import DevLogo from "@/components/layout/devLogo";
+import { useUser } from "@/lib/auth/useUser";
 import profilePic from "public/photo.jpg";
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
 
 const Navbar = ({ children }: Props) => {
   const [visible, setVisible] = useState(false);
+  const { user, logout } = useUser();
 
   return (
     <>
@@ -38,7 +40,9 @@ const Navbar = ({ children }: Props) => {
               placeholder="blur"
               className="rounded-xl"
             />
-            <p className="tracking-tight my-auto hidden md:flex">User Name</p>
+            <p className="tracking-tight my-auto hidden md:flex">
+              {user && user.name}
+            </p>
             {visible ? (
               <FaCaretUp className="w-3 h-3 my-auto hidden md:flex" />
             ) : (
@@ -62,7 +66,10 @@ const Navbar = ({ children }: Props) => {
             <p className="my-auto">Group Chat</p>
           </div>
           <div className="w-full h-0.5 bg-gray-100 rounded-lg my-2"></div>
-          <div className="flex w-full justify-center text-red-500 py-3 space-x-2 rounded-lg hover:bg-red-100 cursor-pointer transition duration-300">
+          <div
+            className="flex w-full justify-center text-red-500 py-3 space-x-2 rounded-lg hover:bg-red-100 cursor-pointer transition duration-300"
+            onClick={() => logout()}
+          >
             <FaSignOutAlt className="w-5 h-5 my-auto" />{" "}
             <p className="my-auto">Logout</p>
           </div>

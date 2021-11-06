@@ -2,7 +2,7 @@ import { initFirebase, db } from "@/lib/firebaseInit";
 import {
   getAuth,
   signInWithPopup,
-  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
   GoogleAuthProvider,
   FacebookAuthProvider,
   TwitterAuthProvider,
@@ -103,7 +103,7 @@ export default async function index(
       });
     }
     if (provider === "emailPassword" && credentials) {
-      await signInWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         credentials.email,
         credentials.password
@@ -120,7 +120,9 @@ export default async function index(
         });
       });
     }
+    return true;
   } catch (e: any) {
     console.log(e.message);
+    return false;
   }
 }

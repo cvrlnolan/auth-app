@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 type Props = {
-  getAuth: Function;
+  setAuth: Function;
 };
 
 const Login = (props: Props) => {
@@ -65,7 +65,7 @@ const Login = (props: Props) => {
           Don&apos;t have an account yet ?{" "}
           <p
             className="inline-flex text-blue-500 cursor-pointer hover:text-blue-700 transition duration-300"
-            onClick={() => props.getAuth(false)}
+            onClick={() => props.setAuth(false)}
           >
             Register.
           </p>

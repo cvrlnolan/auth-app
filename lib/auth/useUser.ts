@@ -9,6 +9,8 @@ import {
 } from "@/lib/auth/userCookies";
 import { useRouter } from "next/router";
 
+initFirebase();
+
 const useUser = () => {
   const [user, setUser] = useState<any>();
   const router = useRouter();
@@ -26,6 +28,7 @@ const useUser = () => {
     try {
       await auth.signOut();
       removeUserCookie();
+      router.push("/");
     } catch (e: any) {
       console.log(e.message);
     }
@@ -37,6 +40,7 @@ const useUser = () => {
         const userData = mapUserData(user);
         setUserCookie(userData);
         setUser(userData);
+        router.replace("/profile");
       } else {
         removeUserCookie();
       }
@@ -45,8 +49,10 @@ const useUser = () => {
     const userFromCookie = getUserFromCookie();
     if (!userFromCookie) {
       router.replace("/");
+    } else {
+      setUser(userFromCookie);
+      router.replace("/profile");
     }
-    setUser(userFromCookie);
     return () => {
       cancelAuthListener();
     };

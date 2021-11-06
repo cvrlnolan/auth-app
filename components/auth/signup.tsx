@@ -11,7 +11,7 @@ import {
 import signup from "@/lib/auth/signup";
 
 type Props = {
-  getAuth: Function;
+  setAuth: Function;
 };
 
 const Signup = (props: Props) => {
@@ -20,8 +20,17 @@ const Signup = (props: Props) => {
     password: "",
   });
 
-  const signupClick = () => {
-    console.log(value);
+  const signupClick = async () => {
+    // console.log(value);
+    const success = await signup("emailPassword", {
+      email: value.email,
+      password: value.password,
+    });
+    if (success) {
+      console.log("logged in");
+    } else {
+      console.log("Error encountered");
+    }
   };
 
   return (
@@ -45,6 +54,7 @@ const Signup = (props: Props) => {
             placeholder="Email"
             id="email"
             type="email"
+            required
             onChange={(e) => {
               setValue((prevState) => ({
                 ...prevState,
@@ -64,6 +74,7 @@ const Signup = (props: Props) => {
             placeholder="Password"
             id="password"
             type="password"
+            required
             onChange={(e) => {
               setValue((prevState) => ({
                 ...prevState,
@@ -112,7 +123,7 @@ const Signup = (props: Props) => {
           Already a member ?{" "}
           <p
             className="inline-flex text-blue-500 cursor-pointer hover:text-blue-700 transition duration-300"
-            onClick={() => props.getAuth(true)}
+            onClick={() => props.setAuth(true)}
           >
             Login.
           </p>
