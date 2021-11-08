@@ -4,6 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import Compressor from "compressorjs";
 import profilePic from "public/photo.jpg";
 import { FaCamera } from "react-icons/fa";
+import update from "@/lib/profile/update";
 
 type Props = {
   user: any;
@@ -15,6 +16,14 @@ const UpdateView = (props: Props) => {
   const [image, setImage] = useState<File | Blob>();
 
   const [preview, setPreview] = useState<string>();
+
+  const [value, setValue] = useState({
+    name: "",
+    bio: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+  });
 
   const imageRef = createRef<HTMLInputElement>();
 
@@ -36,6 +45,15 @@ const UpdateView = (props: Props) => {
           setPreview(URL.createObjectURL(compressedImage));
         },
       });
+    }
+  };
+
+  const updateClick = async () => {
+    const success = await update(props.user, value);
+    if (success) {
+      console.log("Updated");
+    } else {
+      console.log("Error encountered");
     }
   };
 
@@ -70,28 +88,62 @@ const UpdateView = (props: Props) => {
         <input
           className="w-full md:w-4/5 lg:w-1/2 p-4 rounded-lg border border-gray-400 shadow text-sm leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 focus:outline-none transition duration-300"
           placeholder="Enter your name..."
+          type="text"
+          value={value.name}
+          onChange={(e) => {
+            setValue((prevState) => ({ ...prevState, name: e.target.value }));
+          }}
         />
         <label className="text-gray-600">Bio</label>
         <input
           className="w-full md:w-4/5 lg:w-1/2 h-28 p-4 rounded-lg border border-gray-400 shadow text-sm leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 focus:outline-none transition duration-300"
           placeholder="Enter your bio..."
+          type="text"
+          value={value.bio}
+          onChange={(e) => {
+            setValue((prevState) => ({ ...prevState, bio: e.target.value }));
+          }}
         />
         <label className="text-gray-600">Phone</label>
         <input
           className="w-full md:w-4/5 lg:w-1/2 p-4 rounded-lg border border-gray-400 shadow text-sm leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 focus:outline-none transition duration-300"
           placeholder="Enter your phone..."
+          type="tel"
+          value={value.phoneNumber}
+          onChange={(e) => {
+            setValue((prevState) => ({
+              ...prevState,
+              phoneNumber: e.target.value,
+            }));
+          }}
         />
         <label className="text-gray-600">Email</label>
         <input
           className="w-full md:w-4/5 lg:w-1/2 p-4 rounded-lg border border-gray-400 shadow text-sm leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 focus:outline-none transition duration-300"
           placeholder="Enter your email..."
+          type="email"
+          value={value.email}
+          onChange={(e) => {
+            setValue((prevState) => ({ ...prevState, email: e.target.value }));
+          }}
         />
         <label className="text-gray-600">Password</label>
         <input
           className="w-full md:w-4/5 lg:w-1/2 p-4 rounded-lg border border-gray-400 shadow text-sm leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 focus:outline-none transition duration-300"
           placeholder="Enter your password..."
+          type="password"
+          value={value.password}
+          onChange={(e) => {
+            setValue((prevState) => ({
+              ...prevState,
+              password: e.target.value,
+            }));
+          }}
         />
-        <button className="w-1/3 lg:w-1/4 px-4 py-2 bg-blue-400 hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 text-white rounded-lg transition duration-300">
+        <button
+          className="w-1/3 lg:w-1/4 px-4 py-2 bg-blue-400 hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 text-white rounded-lg transition duration-300"
+          onClick={updateClick}
+        >
           Save
         </button>
       </div>
