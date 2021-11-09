@@ -2,9 +2,9 @@ import React, { useState, Fragment, createRef } from "react";
 import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
 import Compressor from "compressorjs";
-import profilePic from "public/photo.jpg";
 import { FaCamera } from "react-icons/fa";
 import update from "@/lib/profile/update";
+import upload from "@/lib/profile/uploadPhoto";
 
 type Props = {
   user: any;
@@ -16,6 +16,8 @@ const UpdateView = (props: Props) => {
   const [image, setImage] = useState<File | Blob>();
 
   const [preview, setPreview] = useState<string>();
+
+  const [picURL, setURL] = useState<string>();
 
   const [value, setValue] = useState({
     name: "",
@@ -57,6 +59,15 @@ const UpdateView = (props: Props) => {
     }
   };
 
+  const uploadClick = async () => {
+    const success = await upload(props.user, image, picURL);
+    if (success) {
+      console.log("Uploaded");
+    } else {
+      console.log("Error encountered");
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col p-6 w:full md:w-4/5 mx-auto mt-10 space-y-4 border-2 border-gray-300 rounded-lg">
@@ -71,11 +82,10 @@ const UpdateView = (props: Props) => {
           <div className="relative filter brightness-75 contrast-100 saturate-150 drop-shadow-lg">
             <Image
               alt="profile_pic"
-              src={profilePic}
+              src={props.user.photoURL}
               width="75"
               height="75"
               objectFit="cover"
-              placeholder="blur"
               className="rounded-lg"
             />
             <div className="absolute w-full h-full inset-y-7 inset-x-7 bg-transparent">
@@ -208,6 +218,11 @@ const UpdateView = (props: Props) => {
                   <input
                     className="w-full px-4 py-2.5 rounded-lg border border-gray-400 shadow text-sm leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 focus:outline-none transition duration-300"
                     placeholder="Enter your image URL.."
+                    type="text"
+                    onChange={(e) => {
+                      setURL(e.target.value);
+                    }}
+                    value={picURL}
                   />
                 </div>
 
@@ -215,7 +230,7 @@ const UpdateView = (props: Props) => {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    // onClick={closeModal}
+                    onClick={uploadClick}
                   >
                     Upload
                   </button>

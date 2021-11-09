@@ -10,7 +10,6 @@ import {
 import Container from "@/components/layout/container";
 import DevLogo from "@/components/layout/devLogo";
 import { useUser } from "@/lib/auth/useUser";
-import profilePic from "public/photo.jpg";
 
 type Props = {
   children?: ReactNode;
@@ -31,16 +30,17 @@ const Navbar = ({ children }: Props) => {
             className="space-x-4 inline-flex cursor-pointer select-none"
             onClick={() => setVisible(!visible)}
           >
-            <Image
-              alt="profile_pic"
-              src={profilePic}
-              width="50"
-              height="50"
-              objectFit="cover"
-              placeholder="blur"
-              className="rounded-xl"
-            />
-            <p className="tracking-tight my-auto hidden md:flex">
+            {user && user.photoURL && (
+              <Image
+                alt="profile_pic"
+                src={user.photoURL}
+                width="50"
+                height="50"
+                objectFit="cover"
+                className="rounded-xl"
+              />
+            )}
+            <p className="tracking-tight my-auto hidden md:flex truncate">
               {user && user.name}
             </p>
             {visible ? (

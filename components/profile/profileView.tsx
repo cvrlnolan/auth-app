@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import profilePic from "public/photo.jpg";
 
 type Props = {
   getEdit: Function;
@@ -36,11 +35,10 @@ const ProfileView = (props: Props) => {
               <div className="table-cell">
                 <Image
                   alt="profile_pic"
-                  src={profilePic}
+                  src={props.user.photoURL}
                   width="100"
                   height="100"
                   objectFit="cover"
-                  placeholder="blur"
                   className="rounded-lg"
                 />
               </div>
