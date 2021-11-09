@@ -7,9 +7,9 @@ type Props = {
 const Container = ({ children }: Props) => {
   return (
     <>
-      <div className="container mx-auto p-6 w-full min-h-screen bg-gray-50 relative">
+      <div className="main_container">
         {children}
-        <div className="flex justify-center space-x-12 my-4 text-gray-500">
+        <div className="footer">
           <p>Created by Carl Nolan</p>
           <p>devChallenges.io</p>
         </div>

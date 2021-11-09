@@ -91,10 +91,7 @@ const Profile: NextPage = () => {
         )}
         {edit && (
           <div className="flex w-full">
-            <button
-              className="flex py-2 px-4 mx-auto text-blue-400 hover:text-blue-500 transition duration-300"
-              onClick={() => setEdit(false)}
-            >
+            <button className="back_button" onClick={() => setEdit(false)}>
               <FaChevronLeft className="w-4 h-4 my-auto" /> Back
             </button>
           </div>

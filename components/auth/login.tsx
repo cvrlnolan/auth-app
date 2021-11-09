@@ -37,16 +37,13 @@ const Login = (props: Props) => {
 
   return (
     <>
-      <div className="flex flex-col mx-auto rounded-2xl border-2 p-6 w-full md:w-4/5 lg:w-2/5 space-y-4">
+      <div className="auth_card">
         <DevLogo width={131} height={22} />
         <p className="text-center tracking-tight">Login</p>
-        <label
-          htmlFor="email"
-          className="relative text-gray-400 focus-within:text-gray-600 block mb-5"
-        >
-          <FaAt className="pointer-events-none w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3" />
+        <label htmlFor="email" className="input_label">
+          <FaAt className="input_icon" />
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+            className="auth_input"
             placeholder="Email"
             id="email"
             type="email"
@@ -60,13 +57,10 @@ const Login = (props: Props) => {
             value={value.email}
           />
         </label>
-        <label
-          htmlFor="password"
-          className="relative text-gray-400 focus-within:text-gray-600 block mb-5"
-        >
-          <FaKey className="pointer-events-none w-4 h-4 absolute top-1/2 transform -translate-y-1/2 right-3" />
+        <label htmlFor="password" className="input_label">
+          <FaKey className="input_icon" />
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+            className="auth_input"
             placeholder="Password"
             id="password"
             type="password"
@@ -80,47 +74,29 @@ const Login = (props: Props) => {
             value={value.password}
           />
         </label>
-        <button
-          className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg transition duration-300 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-          onClick={loginClick}
-        >
+        <button className="auth_button" onClick={loginClick}>
           Login
         </button>
         <p className="text-center font-thin tracking-tight">
           or continue with this social profile:
         </p>
         <div className="flex flex-wrap space-x-2 mx-auto">
-          <button
-            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
-            onClick={() => signup("google")}
-          >
+          <button className="social_button" onClick={() => signup("google")}>
             <FaGoogle className="w-4 h-4 mx-auto text-gray-500" />
           </button>
-          <button
-            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
-            onClick={() => signup("facebook")}
-          >
+          <button className="social_button" onClick={() => signup("facebook")}>
             <FaFacebookSquare className="w-4 h-4 mx-auto text-gray-500" />
           </button>
-          <button
-            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
-            onClick={() => signup("twitter")}
-          >
+          <button className="social_button" onClick={() => signup("twitter")}>
             <FaTwitter className="w-4 h-4 mx-auto text-gray-500" />
           </button>
-          <button
-            className="w-12 h-12 rounded-full border border-gray-500 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 hover:bg-gray-200 transition duration-300"
-            onClick={() => signup("github")}
-          >
+          <button className="social_button" onClick={() => signup("github")}>
             <FaGithub className="w-4 h-4 mx-auto text-gray-500" />
           </button>
         </div>
         <p className="text-center font-thin tracking-tight">
           Don&apos;t have an account yet ?{" "}
-          <p
-            className="inline-flex text-blue-500 cursor-pointer hover:text-blue-700 transition duration-300"
-            onClick={() => props.setAuth(false)}
-          >
+          <p className="auth_link" onClick={() => props.setAuth(false)}>
             Register.
           </p>
         </p>

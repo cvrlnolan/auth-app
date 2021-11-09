@@ -9,7 +9,7 @@ type Props = {
 const ProfileView = (props: Props) => {
   return (
     <>
-      <div className="table border-2 border-gray-300 rounded-lg p-4 w:full md:w-4/5 mx-auto mt-10">
+      <div className="profile_table">
         <div className="table-row-group">
           <div className="table-row">
             <div className="flex justify-between p-4">
@@ -20,7 +20,7 @@ const ProfileView = (props: Props) => {
                 </p>
               </div>
               <button
-                className="py-1 px-4 w-24 h-10 rounded-xl border-2 border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300"
+                className="edit_button"
                 onClick={() => props.getEdit(true)}
               >
                 Edit

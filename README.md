@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Auth-app
 
-## Getting Started
+Next.js (TypeScript) solution for the auth-app challenge on devChallenges.
 
-First, run the development server:
+Live demo available at: https://auth-app-lyart.vercel.app/profile
+
+## Description
+
+This project was built to complete all the user stories listed or described by the challenge itself. Hence in this project, a user can:
+
+- Register a new account
+- Log in
+- Log in or register with at least one of the following services: Google, Facebook, Twitter or Github
+- Sign out
+- See his/her profile details
+- Edit his/her details including: photo, name, bio, phone, email and password
+- Upload a new photo or provide an image URL
+
+## Installation
+
+1. To get this project files locally on your machine, you can clone this repository by running the following command on your terminal or command line:
 
 ```bash
-npm run dev
-# or
-yarn dev
+git clone https://github.com/cvrlnolan/auth-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Next, you need to setup the .env file found in the root with the appropriate API Keys & credentials from the following service provider:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- [Google Firebase]()
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Install all the dependency packages found in the `package.json` file by running `yarn install` or `npm install` from the project root directory.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+4. To start the development server of the application, run `npm run dev` or `yarn dev`. This should log some start-up application information & display the development server url: `http://localhost:3000`. Visit http://localhost:3000 to view your application.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+### General
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This application was built reflecting the MVC architecture and the main dependencies(all found in the package.json) of the application are organised as so:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Front-end User Interface(UI): [React.js](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/)
+- Database Management: [Cloud Firestore](https://firebase.google.com/products/firestore),
+- Authentication: [Firebase Authentication](https://firebase.google.com/products/auth)
+- Backend Integration: [Next.js API (serverless functions)](https://nextjs.org/docs/api-routes/introduction)
 
-## Deploy on Vercel
+Other important services & dependency libraries of the application include:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [axios](https://www.npmjs.com/package/axios): An http client to fetch urls and make api calls or requests within the application.
+- [swr](https://swr.vercel.app/): To fetch and revalidate data on the client-side of the application while keeping the UI reactive.
+- [js-cookie](https://www.npmjs.com/package/js-cookie): A simple, lightweight JavaScript API for handling cookies
+- [compressorjs](compressorjs): Javascript image compressor to compress images before uploading them to storage to have an optimized and servable version.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Directives
+
+The application is organized from the root(.) as follows:
+
+- `./page/` folder(integrated by NextJS) contains the UI Views for the application with the exception of the `./page/api/*` sub-folder(reserved for serverless functions).
+- `./lib/` folder contains the Firebase initialization configuration file.
+- `./components/` folder contains coded UI layouts to be used through out the application.
+- `./styles/` folder(integrated by NextJS) contains the global style of the application in which Tailwindcss presets have been defined. The global stylesheet is accessible by all components.
+- `./public/` folder(integrated by NextJS) contains global files to be shared through the application. You can store static images here.
+
+Absolute imports to any of these folders through the application are configured in the tsconfig.json file in the root.
+
+### Deployment
+
+You may eventually want to deploy a live version of your app in a future instance. [Vercel](https://vercel.com/) platform is suitably built fo the deployment of NextJS application and more as they have an integrated environment to deploy directly from your own [Github Repository](https://github.com/new).
+
+## Support
+
+If any worries, bugs or problem arises in the future, you can create an issue, contribute or contact me via:
+
+- carlnolan@lootyclub.com
+
+## License
+
+![GitHub](https://img.shields.io/github/license/cvrlnolan/auth-app) ![GitHub contributors](https://img.shields.io/github/contributors/cvrlnolan/auth-app) ![GitHub last commit](https://img.shields.io/github/last-commit/cvrlnolan/auth-app) ![GitHub issues](https://img.shields.io/github/issues/cvrlnolan/auth-app) ![GitHub repo size](https://img.shields.io/github/repo-size/cvrlnolan/auth-app)
+
+![GitHub followers](https://img.shields.io/github/followers/cvrlnolan?style=social) ![Twitter Follow](https://img.shields.io/twitter/follow/realcarlnolan?style=social)

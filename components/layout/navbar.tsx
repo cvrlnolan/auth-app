@@ -59,23 +59,17 @@ const Navbar = ({ children }: Props) => {
           }
         >
           <Link href="/profile" passHref>
-            <div
-              className="flex w-full justify-center py-3 space-x-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-300"
-              onClick={() => {}}
-            >
+            <div className="menu_div" onClick={() => {}}>
               <FaUserCircle className="w-5 h-5 my-auto" />{" "}
               <p className="my-auto">Profile</p>
             </div>
           </Link>
-          <div className="flex w-full justify-center py-3 space-x-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-300">
+          <div className="menu_div">
             <FaUsers className="w-5 h-5 my-auto" />{" "}
             <p className="my-auto">Group Chat</p>
           </div>
           <div className="w-full h-0.5 bg-gray-100 rounded-lg my-2"></div>
-          <div
-            className="flex w-full justify-center text-red-500 py-3 space-x-2 rounded-lg hover:bg-red-100 cursor-pointer transition duration-300"
-            onClick={() => logout()}
-          >
+          <div className="menu_div" onClick={() => logout()}>
             <FaSignOutAlt className="w-5 h-5 my-auto" />{" "}
             <p className="my-auto">Logout</p>
           </div>
