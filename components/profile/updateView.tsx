@@ -54,17 +54,21 @@ const UpdateView = (props: Props) => {
     const success = await update(props.user, value);
     if (success) {
       console.log("Updated");
+      alert("Updated.");
     } else {
       console.log("Error encountered");
+      alert("Error encountered.");
     }
   };
 
   const uploadClick = async () => {
     const success = await upload(props.user, image, picURL);
     if (success) {
-      console.log("Uploaded");
+      // console.log("Uploaded");
+      alert("Uploaded.");
     } else {
-      console.log("Error encountered");
+      // console.log("Error encountered");
+      alert("Error encountered");
     }
   };
 

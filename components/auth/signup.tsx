@@ -27,9 +27,11 @@ const Signup = (props: Props) => {
       password: value.password,
     });
     if (success) {
-      console.log("logged in");
+      // console.log("logged in");
+      alert("Logged in");
     } else {
-      console.log("Error encountered");
+      // console.log("Error encountered");
+      alert("Error encountered");
     }
   };
 
