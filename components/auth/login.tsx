@@ -28,7 +28,7 @@ const Login = (props: Props) => {
     });
     if (success) {
       console.log("Logged in");
-      alert("Logged in.");
+      alert("Logged.");
     } else {
       console.log("Error encountered.");
       alert("Error encountered.");
