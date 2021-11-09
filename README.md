@@ -26,7 +26,7 @@ git clone https://github.com/cvrlnolan/auth-app
 
 2. Next, you need to setup the .env file found in the root with the appropriate API Keys & credentials from the following service provider:
 
-- [Google Firebase]()
+- [Google Firebase](https://firebase.google.com/)
 
 3. Install all the dependency packages found in the `package.json` file by running `yarn install` or `npm install` from the project root directory.
 
