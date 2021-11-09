@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   FaCaretDown,
   FaCaretUp,
@@ -57,10 +58,15 @@ const Navbar = ({ children }: Props) => {
               : "hidden"
           }
         >
-          <div className="flex w-full justify-center py-3 space-x-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-300">
-            <FaUserCircle className="w-5 h-5 my-auto" />{" "}
-            <p className="my-auto">Profile</p>
-          </div>
+          <Link href="/profile" passHref>
+            <div
+              className="flex w-full justify-center py-3 space-x-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-300"
+              onClick={() => {}}
+            >
+              <FaUserCircle className="w-5 h-5 my-auto" />{" "}
+              <p className="my-auto">Profile</p>
+            </div>
+          </Link>
           <div className="flex w-full justify-center py-3 space-x-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-300">
             <FaUsers className="w-5 h-5 my-auto" />{" "}
             <p className="my-auto">Group Chat</p>
