@@ -8,7 +8,7 @@ import {
   TwitterAuthProvider,
   GithubAuthProvider,
 } from "firebase/auth";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc, getDoc, Timestamp } from "firebase/firestore";
 import { mapUserData } from "@/lib/auth/mapUser";
 import { setUserCookie } from "@/lib/auth/userCookies";
 
@@ -35,16 +35,21 @@ export default async function index(
         const credential = GoogleAuthProvider.credentialFromResult(result!);
         const token = credential?.accessToken;
         const user = result?.user;
-        setDoc(doc(db, "users", user.uid), {
-          name: user.displayName,
-          email: user.email,
-          bio: "",
-          phone: user.phoneNumber,
-          photoURL: user.photoURL,
-          uid: user.uid,
-          // token,
-          provider: user.providerId,
-          createdDate: Timestamp.fromDate(new Date()),
+        const userDoc = doc(db, "users", user.uid);
+        getDoc(userDoc).then((snapshot) => {
+          if (!snapshot.exists()) {
+            setDoc(userDoc, {
+              name: user.displayName,
+              email: user.email,
+              bio: "",
+              phone: user.phoneNumber,
+              photoURL: user.photoURL,
+              uid: user.uid,
+              // token,
+              provider: user.providerId,
+              createdDate: Timestamp.fromDate(new Date()),
+            });
+          }
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -55,16 +60,21 @@ export default async function index(
         const credential = FacebookAuthProvider.credentialFromResult(result!);
         const token = credential?.accessToken;
         const user = result?.user;
-        setDoc(doc(db, "users", user.uid), {
-          name: user.displayName,
-          email: user.email,
-          bio: "",
-          phone: user.phoneNumber,
-          photoURL: user.photoURL,
-          uid: user.uid,
-          // token,
-          provider: user.providerId,
-          createdDate: Timestamp.fromDate(new Date()),
+        const userDoc = doc(db, "users", user.uid);
+        getDoc(userDoc).then((snapshot) => {
+          if (!snapshot.exists()) {
+            setDoc(userDoc, {
+              name: user.displayName,
+              email: user.email,
+              bio: "",
+              phone: user.phoneNumber,
+              photoURL: user.photoURL,
+              uid: user.uid,
+              // token,
+              provider: user.providerId,
+              createdDate: Timestamp.fromDate(new Date()),
+            });
+          }
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -75,16 +85,21 @@ export default async function index(
         const credential = TwitterAuthProvider.credentialFromResult(result!);
         const token = credential?.accessToken;
         const user = result?.user;
-        setDoc(doc(db, "users", user.uid), {
-          name: user.displayName,
-          email: user.email,
-          bio: "",
-          phone: user.phoneNumber,
-          photoURL: user.photoURL,
-          uid: user.uid,
-          // token,
-          provider: user.providerId,
-          createdDate: Timestamp.fromDate(new Date()),
+        const userDoc = doc(db, "users", user.uid);
+        getDoc(userDoc).then((snapshot) => {
+          if (!snapshot.exists()) {
+            setDoc(userDoc, {
+              name: user.displayName,
+              email: user.email,
+              bio: "",
+              phone: user.phoneNumber,
+              photoURL: user.photoURL,
+              uid: user.uid,
+              // token,
+              provider: user.providerId,
+              createdDate: Timestamp.fromDate(new Date()),
+            });
+          }
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
@@ -95,16 +110,21 @@ export default async function index(
         const credential = GithubAuthProvider.credentialFromResult(result!);
         const token = credential?.accessToken;
         const user = result?.user;
-        setDoc(doc(db, "users", user.uid), {
-          name: user.displayName,
-          email: user.email,
-          bio: "",
-          phone: user.phoneNumber,
-          photoURL: user.photoURL,
-          uid: user.uid,
-          // token,
-          provider: user.providerId,
-          createdDate: Timestamp.fromDate(new Date()),
+        const userDoc = doc(db, "users", user.uid);
+        getDoc(userDoc).then((snapshot) => {
+          if (!snapshot.exists()) {
+            setDoc(userDoc, {
+              name: user.displayName,
+              email: user.email,
+              bio: "",
+              phone: user.phoneNumber,
+              photoURL: user.photoURL,
+              uid: user.uid,
+              // token,
+              provider: user.providerId,
+              createdDate: Timestamp.fromDate(new Date()),
+            });
+          }
         });
         const userData = mapUserData(user);
         setUserCookie(userData);
