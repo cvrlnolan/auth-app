@@ -28,7 +28,7 @@ const Navbar = ({ children }: Props) => {
             <DevLogo width={131} height={22} />
           </div>
           <div
-            className="space-x-4 inline-flex cursor-pointer select-none"
+            className="space-x-4 inline-flex items-center cursor-pointer select-none"
             onClick={() => setVisible(!visible)}
           >
             {user && user.photoURL && (
@@ -45,9 +45,9 @@ const Navbar = ({ children }: Props) => {
               {user && user.name}
             </p>
             {visible ? (
-              <FaCaretUp className="w-3 h-3 my-auto hidden md:flex" />
+              <FaCaretUp className="w-3 h-3 hidden md:flex" />
             ) : (
-              <FaCaretDown className="w-3 h-3 my-auto hidden md:flex" />
+              <FaCaretDown className="w-3 h-3 hidden md:flex" />
             )}
           </div>
         </nav>
